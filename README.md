@@ -16,6 +16,16 @@ Or install it yourself as:
 
     $ gem install server-scripts
 
+## Configuration
+
+### Mailer
+
+The mailer should be configured to email alerts to the system administrator. Configuration for the mailer is done through environment variables. See [.env](https://github.com/dwilkie/server-scripts/blob/master/.env) for available configuration options.
+
+#### Gmail
+
+See [.env.gmail](https://github.com/dwilkie/server-scripts/blob/master/.env.gmail) for configuration options
+
 ## Usage
 
 See the [script](https://github.com/dwilkie/server-scripts/tree/master/lib/server/script) directory
