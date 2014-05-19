@@ -1,5 +1,5 @@
 module Server
-  module Scripts
+  module Script
     VERSION = "0.0.1"
   end
 end

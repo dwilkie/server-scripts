@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'server/scripts/version'
+require 'server/script/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "server-scripts"
-  spec.version       = Server::Scripts::VERSION
+  spec.version       = Server::Script::VERSION
   spec.authors       = ["David Wilkie"]
   spec.email         = ["dwilkie@gmail.com"]
   spec.description   = %q{A set of useful server scripts}

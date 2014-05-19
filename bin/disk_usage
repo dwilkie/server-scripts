@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require './lib/server/script/disk_usage'
+
+disk_usage = Server::Script::DiskUsage.new
+disk_usage.check!

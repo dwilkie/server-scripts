@@ -6,8 +6,8 @@ module Server
       attr_accessor :from, :to
 
       def initialize(options = {})
-        self.from = options[:from] || ENV["SERVER_SCRIPT_FROM_EMAIL"]
-        self.to = [options[:to] || ENV["SERVER_SCRIPT_TO_EMAILS"].to_s.split(";")].compact.flatten
+        self.from = options[:from] || ENV["MAIL_DEFAULT_FROM_ADDRESS"]
+        self.to = [options[:to] || ENV["MAIL_DEFAULT_TO_ADDRESSES"].to_s.split(";")].compact.flatten
       end
 
       def alert!(message)
