@@ -2,7 +2,7 @@ require_relative "base"
 
 module Server
   module Script
-    class DiskUsage < Base
+    class DiskUsage < ::Server::Script::Base
       attr_accessor :mount_point, :limit
 
       def initialize(options = {})
