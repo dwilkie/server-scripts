@@ -2,20 +2,20 @@ require 'spec_helper'
 
 describe Server::Script::DiskUsage do
   let(:mail_helper) { Server::Script::SpecHelpers::MailHelper.new }
+  let(:stub_helper) { Server::Script::SpecHelpers::StubHelper.new(subject) }
   let(:limit) { 50 }
 
   subject { build(:disk_usage, :limit => limit) }
 
   describe "#check!" do
     let(:alert) { mail_helper.last_mail }
-    let(:server_name) { "server-name" }
 
     def sample_df_output(percentage)
       "Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda2       223G   41G  172G  #{percentage}% /\n"
     end
 
     before do
-      subject.stub(:`).with("hostname").and_return(server_name)
+      stub_helper.stub_hostname
       subject.stub(:`).with(/^df/).and_return(df_output)
       subject.check!
     end
@@ -25,7 +25,7 @@ describe Server::Script::DiskUsage do
       it "should send an alert" do
         alert.should_not be_nil
         mail_subject = alert.subject
-        mail_subject.should include(server_name)
+        mail_subject.should include(stub_helper.server_name)
         mail_subject.should include(limit.to_s)
         mail_subject.should include(subject.mount_point)
       end

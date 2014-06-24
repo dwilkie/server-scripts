@@ -1,5 +1,6 @@
 require "./lib/server/script/disk_usage"
 require "./lib/server/script/mailer"
+require "./lib/server/script/virtual_ip_mapper"
 
 FactoryGirl.define do
   factory :disk_usage, :class => Server::Script::DiskUsage do
@@ -9,6 +10,10 @@ FactoryGirl.define do
     limit { "90" }
 
     initialize_with { new(attributes) }
+  end
+
+  factory :virtual_ip_mapper, :class => Server::Script::VirtualIpMapper do
+    skip_create
   end
 
   factory :mailer, :class => Server::Script::Mailer do
