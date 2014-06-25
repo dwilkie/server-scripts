@@ -21,6 +21,8 @@ module Server
           return
         end
 
+
+
         return if ip_table_rule_exists?
 
         update_ip_tables_rule!
@@ -46,11 +48,15 @@ module Server
       end
 
       def local_ip
-        @local_ip ||= `/sbin/ifconfig #{network_interface} | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'`
+        @local_ip ||= `/sbin/ifconfig #{network_interface} | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'`.strip
       end
 
       def local_ip_valid?
-        local_ip =~ /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/
+        local_ip =~ ip_regex
+      end
+
+      def ip_regex
+        /(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b)/
       end
 
       def ip_table_rules
@@ -58,6 +64,9 @@ module Server
       end
 
       def update_ip_tables_rule!
+        ip_table_rules =~ /#{ip_tables_rule_command('A', ip_regex)}/
+        old_ip = $~[1]
+        `sudo iptables -t nat #{ip_tables_rule_command("D", old_ip)}` if old_ip
         `sudo iptables -t nat #{ip_tables_rule_command("A", local_ip)}`
       end
 

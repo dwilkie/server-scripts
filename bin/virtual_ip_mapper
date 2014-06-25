@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/server/script/virtual_ip_mapper'
+
+virtual_ip_mapper = Server::Script::VirtualIpMapper.new
+virtual_ip_mapper.map!
