@@ -28,17 +28,17 @@ See [.env.gmail](https://github.com/dwilkie/server-scripts/blob/master/.env.gmai
 
 ## Usage
 
-### Scripts
+The [bin](https://github.com/dwilkie/server-scripts/tree/master/bin) directory contains the executable server scripts. If these scripts are being run on a production server, the [cron exporter](https://github.com/dwilkie/server-scripts-cron) is useful for creating wrapper scripts which can be executed by different environments such as cron.
 
-See the [script](https://github.com/dwilkie/server-scripts/tree/master/lib/server/script) directory for the source code
+## Scripts
 
-#### Disk Usage
+### Disk Usage
 
 [View source](https://github.com/dwilkie/server-scripts/tree/master/lib/server/script/disk_usage.rb)
 
 Disk usage checks your disk usage and sends an alert if it's over your defined limit. You can export this to a cron job by using the [cron exporter](https://github.com/dwilkie/server-scripts-cron)
 
-#### Virtual IP Mapper
+### Virtual IP Mapper
 
 [View source](https://github.com/dwilkie/server-scripts/tree/master/lib/server/script/virtual_ip_mapper.rb)
 
